@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   BrowserRouter,
   Routes,
   Route,
   Navigate,
-  useParams,
 } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+
 
 import PagesContainer from "./PagesContainer";
 import Home from "./Home";
@@ -14,8 +13,7 @@ import SignIn from "./SignIn";
 import Success from "./Success";
 import SignUp from "./SignUp";
 import Confirm from "./Confirm";
-import PostPage from "./Post";
-import { getSinglePost, PostSelectors } from "../redux/reducers/postSlice";
+import SelectedSinglePost from "./Post/SelectedSinglePost";
 
 export enum RoutesList {
   Home = "/",
@@ -29,18 +27,10 @@ export enum RoutesList {
   Default = "*",
 }
 const Router = () => {
-  const dispatch = useDispatch();
-  const params = useParams();
+
 
   const isLoggedIn = false;
-  const { id } = params;
-  const singlePost = useSelector(PostSelectors.getSinglePost);
 
-  useEffect(() => {
-    if (id) {
-      dispatch(getSinglePost(id));
-    }
-  }, []);
 
   return (
     <BrowserRouter>
@@ -49,7 +39,7 @@ const Router = () => {
           <Route path={RoutesList.Home} element={<Home />} />
           <Route
             path={RoutesList.SinglePost}
-            element={singlePost ? <PostPage post={singlePost} /> : null}
+            element={<SelectedSinglePost/>}
           />
           <Route path={RoutesList.SignIn} element={<SignIn />} />
           <Route path={RoutesList.Success} element={<Success />} />
