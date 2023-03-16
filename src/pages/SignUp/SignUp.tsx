@@ -4,7 +4,7 @@ import Title from "../../components/Title";
 import Input from "../../components/Input";
 import classNames from "classnames";
 import Button from "../../components/Button";
-import { ButtonType } from "../../components/Button/Button";
+import { ButtonType } from "../../utils/@globalTypes";
 import { Theme, useThemeContext } from "../../context/Theme/Context";
 import { NavLink } from "react-router-dom";
 import { RoutesList } from "../Router";

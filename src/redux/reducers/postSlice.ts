@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "../store";
-import { CardType } from "../../components/Card";
+import {CardListType, CardType} from "../../utils/@globalTypes";
+
 
 export enum LikeStatus {
   Like = "like",
@@ -10,9 +11,11 @@ export enum LikeStatus {
 type InitialType = {
   selectedPost: CardType | null;
   isVisibleSelectedModal: boolean;
-  likedPosts: CardType[];
-  dislikedPosts: CardType[];
-  savedPosts: CardType[];
+  likedPosts:CardListType;
+  dislikedPosts: CardListType;
+  savedPosts: CardListType;
+  postsList: CardListType;
+  singlePost: CardType | null;
 };
 
 const initialState: InitialType = {
@@ -21,12 +24,24 @@ const initialState: InitialType = {
   likedPosts: [],
   dislikedPosts: [],
   savedPosts: [],
+  postsList: [],
+  singlePost:null,
 };
 
 const postSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {
+    getAllPosts: (state , action:PayloadAction<undefined>)=>{},
+    setAllPosts: (state, action: PayloadAction<CardListType>) => {
+      state.postsList = action.payload;
+    },
+    getSinglePost:(state, action:PayloadAction<string>)=>{},
+    setSinglePost: (state, action: PayloadAction<CardType | null>) => {
+      state.singlePost = action.payload;
+    },
+
+
     setSelectedPost: (state, action: PayloadAction<CardType | null>) => {
       state.selectedPost = action.payload;
     },
@@ -75,7 +90,7 @@ const postSlice = createSlice({
   },
 });
 
-export const { setSelectedPost, setPostVisibility, setStatus, setSavedPosts } =
+export const { setSelectedPost, setPostVisibility, setStatus, setSavedPosts, getAllPosts, setAllPosts,getSinglePost,setSinglePost } =
   postSlice.actions;
 
 export default postSlice.reducer;
@@ -87,4 +102,6 @@ export const PostSelectors = {
   getLikedPosts: (state: RootState) => state.posts.likedPosts,
   getDislikedPosts: (state: RootState) => state.posts.dislikedPosts,
   getSavedPosts: (state: RootState) => state.posts.savedPosts,
+  getAllPosts:(state:RootState)=>state.posts.postsList,
+  getSinglePost:(state:RootState)=>state.posts.singlePost,
 };

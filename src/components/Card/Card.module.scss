@@ -19,6 +19,12 @@
 .iconContainer {
   display: flex;
   gap: 24px;
+  div:hover{
+    svg >path{
+      cursor: pointer;
+      fill: $primary-secondary;
+    }
+  }
 }
 .infoContainer {
   display: flex;
@@ -40,6 +46,10 @@
   font-size: 32px;
   line-height: 44px;
   color: $secondary;
+  &:hover{
+    cursor: pointer;
+    color: $primary-secondary;
+  }
 }
 .date {
   font-weight: 400;

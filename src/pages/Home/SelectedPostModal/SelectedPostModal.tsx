@@ -8,7 +8,8 @@ import {
   setSelectedPost,
 } from "../../../redux/reducers/postSlice";
 import Card from "../../../components/Card";
-import { CardSize } from "../../../components/Card/types";
+import {CardSize} from "../../../utils/@globalTypes";
+
 
 const SelectedPostModal = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const SelectedPostModal = () => {
   return (
     <Modal isVisible={isVisible} onClose={onClose}>
       {selectedPost ? (
-        <Card card={selectedPost} size={CardSize.large} />
+        <Card card={selectedPost} size={CardSize.Large} />
       ) : null}
     </Modal>
   );

@@ -2,12 +2,13 @@
   display: flex;
   gap: 30px;
   margin-top: 64px;
+  justify-content: space-between;
 }
 .mediumContainer {
   display: flex;
   flex-wrap: wrap;
   max-width: 736px;
-  gap: 48px 32px;
+  gap: 40px 32px;
   margin-top: 38px;
 }
 .rightSideContainer {
