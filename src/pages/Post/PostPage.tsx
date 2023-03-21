@@ -3,17 +3,26 @@ import styles from "./PostPage.module.scss";
 import { BookmarkIcon, DislikeIcon, LikeIcon } from "../../assets/icons";
 import classNames from "classnames";
 import { Theme, useThemeContext } from "../../context/Theme/Context";
-import { CardType } from "../../utils/@globalTypes";
+import {useDispatch, useSelector} from "react-redux";
+import {useParams} from "react-router-dom";
+import {getSinglePost, PostSelectors} from "../../redux/reducers/postSlice";
 
-type PostProps = {
-  post: CardType;
-};
+const PostPage= () => {
+  const dispatch = useDispatch();
+  const params = useParams();
+  const { id } = params;
+  const singlePost = useSelector(PostSelectors.getSinglePost);
 
-const PostPage: FC<PostProps> = ({ post }) => {
-  const { title, text, image, id } = post;
+  useEffect(() => {
+    if (id) {
+      dispatch(getSinglePost(id));
+    }
+  }, []);
+
+
   const { theme } = useThemeContext();
 
-  return (
+  return singlePost ? (
     <div>
       <div className={styles.container}>
         <div className={styles.dreadCrumbs}>
@@ -25,7 +34,7 @@ const PostPage: FC<PostProps> = ({ post }) => {
             Home
           </div>
           <div className={styles.symbolSl}>|</div>
-          <div className={styles.post}> Post {id} </div>
+          <div className={styles.post}> Post {singlePost?.id} </div>
         </div>
         <div className={styles.pageContent}>
           <div
@@ -33,15 +42,15 @@ const PostPage: FC<PostProps> = ({ post }) => {
               [styles.darkTitle]: theme === Theme.Dark,
             })}
           >
-            {title}
+            {singlePost?.title}
           </div>
-          <img src={image} className={styles.image}></img>
+          <img src={singlePost?.image} className={styles.image}></img>
           <div
             className={classNames(styles.text, {
               [styles.darkText]: theme === Theme.Dark,
             })}
           >
-            {text}
+            {singlePost?.text}
           </div>
         </div>
         <div className={styles.icons}>
@@ -61,7 +70,7 @@ const PostPage: FC<PostProps> = ({ post }) => {
         </div>
       </div>
     </div>
-  );
+  ): null;
 };
 
 export default PostPage;
