@@ -3,6 +3,8 @@ import createSagaMiddleware from "redux-saga"
 
 import themeReducer from './reducers/themeSlice'
 import postReducer  from "./reducers/postSlice";
+import authReducer  from "./reducers/authSlice";
+
 import rootSaga from "./sagas/rootSaga";
 
 const sagaMiddleware = createSagaMiddleware()
@@ -11,6 +13,7 @@ const store = configureStore({
     reducer: {
         theme:themeReducer,
         posts: postReducer,
+        auth: authReducer,
     },
     middleware:[sagaMiddleware]
 })

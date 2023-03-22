@@ -1,35 +1,19 @@
-@import "src/assets/colors";
+@import "../../../assets/colors";
 
-.backHome {
+.emailText {
+  border: 1px solid $medium;
+  padding: 40px;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   color: $secondary;
-  margin-bottom: 32px;
-  text-decoration: none;
+  max-width: 544px;
 }
-.backHomeDark{
+.emailTextDark{
+  border-color: $gray;
   color: $white;
 }
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.inputContainer {
-  border: 1px solid $medium;
-  padding: 40px;
-}
-.inputContainerDark{
-  border-color: $gray;
-}
-.title {
-  text-align: start;
-  margin-bottom: 72px;
-  margin-top: 32px;
-}
 .forgotPassword {
   font-size: 16px;
   line-height: 20px;
@@ -52,19 +36,13 @@
   display: flex;
   justify-content: center;
   margin-top: 24px;
+  & span {
+    color: $primary;
+  }
 }
 .darkSingUp{
   color:$medium;
-  .navButton {
+  & span {
     color: $primary-secondary;
-  }
-}
-
-.navButton {
-  text-decoration: none;
-  color: $primary;
-  margin-left: 4px;
-  &:hover {
-    text-decoration: underline;
   }
 }

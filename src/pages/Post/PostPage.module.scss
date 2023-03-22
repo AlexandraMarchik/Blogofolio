@@ -16,6 +16,10 @@
   font-size: 16px;
   line-height: 24px;
   color: $secondary;
+  text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
 }
 .darkHome{
   color: $white;
@@ -58,6 +62,7 @@
 .iconsLike {
   display: flex;
   gap: 10px;
+
 }
 .iconLike {
   display: flex;
@@ -68,6 +73,12 @@
   height: 56px;
   background: $light;
   border-radius: 2px;
+  &:hover{
+    svg > path{
+      cursor: pointer;
+      fill: $primary-secondary;
+    }
+  }
 }
 .iconDisLike {
   display: flex;
@@ -78,6 +89,21 @@
   height: 56px;
   background: $light;
   border-radius: 2px;
+  &:hover{
+    svg > path{
+      cursor: pointer;
+      fill: $primary-secondary;
+    }
+  }
+}
+.status{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  color: $secondary;
+  padding-left: 8px;
 }
 .iconBookMark {
   display: flex;
@@ -91,6 +117,13 @@
   font-weight: 600;
   font-size: 18px;
   color: $secondary;
+  &:hover{
+    svg > path{
+      cursor: pointer;
+      fill: $primary-secondary;
+    }
+    color: $primary-secondary;
+  }
 }
 .darkTitle{
   color: $white;

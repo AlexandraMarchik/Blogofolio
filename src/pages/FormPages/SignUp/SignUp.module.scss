@@ -1,4 +1,4 @@
-@import "./src/assets/colors";
+@import "../../../assets/colors";
 
 .backHome {
   font-weight: 400;
@@ -18,18 +18,12 @@
   align-items: center;
   justify-content: center;
 }
-.emailText {
+.inputContainer {
   border: 1px solid $medium;
   padding: 40px;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: $secondary;
-  max-width: 544px;
 }
-.emailTextDark{
+.inputContainerDark{
   border-color: $gray;
-  color: $white;
 }
 .title {
   text-align: start;
@@ -58,13 +52,19 @@
   display: flex;
   justify-content: center;
   margin-top: 24px;
-  & span {
-    color: $primary;
-  }
 }
 .darkSingUp{
   color:$medium;
-  & span {
+  .navButton {
     color: $primary-secondary;
+  }
+}
+
+.navButton {
+  text-decoration: none;
+  color: $primary;
+  margin-left: 4px;
+  &:hover {
+    text-decoration: underline;
   }
 }

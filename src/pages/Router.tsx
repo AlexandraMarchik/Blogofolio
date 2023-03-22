@@ -9,11 +9,13 @@ import {
 
 import PagesContainer from "./PagesContainer";
 import Home from "./Home";
-import SignIn from "./SignIn";
-import Success from "./Success";
-import SignUp from "./SignUp";
-import Confirm from "./Confirm";
+import SignIn from "./FormPages/SignIn";
+import Success from "./FormPages/Success";
+import SignUp from "./FormPages/SignUp";
+import Confirm from "./FormPages/Confirm";
 import PostPage from "./Post";
+import ResetPassword from "./FormPages/ResetPassword";
+import NewPassword from "./FormPages/NewPassword";
 
 export enum RoutesList {
   Home = "/",
@@ -22,13 +24,13 @@ export enum RoutesList {
   AddPost = "/blog/add",
   SignIn = "/sign-in",
   SignUp = "/sign-up",
-  Confirm = "/sign-up/confirm",
+  Confirm = "activate/:uid/:token",
   Success = "/sign-up/success",
   Default = "*",
+  ResetPassword = "/sign-in/reset-password",
+  NewPassword = '/new-password'
 }
 const Router = () => {
-
-
   const isLoggedIn = false;
 
 
@@ -45,6 +47,8 @@ const Router = () => {
           <Route path={RoutesList.Success} element={<Success />} />
           <Route path={RoutesList.SignUp} element={<SignUp />} />
           <Route path={RoutesList.Confirm} element={<Confirm />} />
+          <Route path={RoutesList.ResetPassword} element={<ResetPassword />} />
+          <Route path={RoutesList.NewPassword} element={<NewPassword />} />
           <Route
             path={RoutesList.AddPost}
             element={
