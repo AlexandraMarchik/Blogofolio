@@ -3,7 +3,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import classNames from "classnames";
 
 import styles from "./SignUp.module.scss";
-import Title from "../../../components/Title";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
 import { ButtonType } from "../../../utils/@globalTypes";
@@ -77,11 +76,12 @@ const SignUp = () => {
 
   const isValid = useMemo(() => {
     return (
-      nameError.length === 0 &&
-      emailError.length === 0 &&
-      passwordError.length === 0
+        nameError.length === 0 &&
+        emailError.length === 0 &&
+        passwordError.length === 0
     );
-  }, [nameError]);
+  }, [nameError, emailError,passwordError]);
+
 
   return (
     <FormPages title={"Sign Up"}>
