@@ -25,8 +25,6 @@ const ResetPassword = () => {
           [styles.TextDark]: isDark,
         })}
       >
-        You will receive an email example@gmail.com with a link to reset your
-        password!
         <div
           className={styles.inputContainer}
         >
