@@ -47,7 +47,7 @@ const Card: FC<CardProps> = ({ card, size }) => {
     dispatch(setStatus({ status, card }));
   };
   const onClickBookmark = () => {
-    dispatch(setSavedPosts({card}));
+    dispatch(setSavedPosts(card));
   };
 
 

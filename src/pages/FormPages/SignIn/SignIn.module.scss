@@ -1,23 +1,6 @@
-@import "./src/assets/colors";
+@import "../../../assets/colors";
 
-.backHome {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: $secondary;
-  text-decoration: none;
-}
 
-.backHomeDark{
-  color: $white;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 .inputContainer {
   border: 1px solid $medium;
   padding: 40px;
@@ -25,17 +8,16 @@
 .inputContainerDark{
   border-color: $gray;
 }
-.title {
-  text-align: start;
-  margin-bottom: 72px;
-  margin-top: 32px;
 
-}
 .forgotPassword {
   font-size: 16px;
   line-height: 20px;
   color: $secondary;
   font-weight: 400;
+  &:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
 .darkThemeForgotPassword{
   color: $white;

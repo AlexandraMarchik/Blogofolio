@@ -1,23 +1,5 @@
-@import "./src/assets/colors";
+@import "../../../assets/colors";
 
-.backHome {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: $secondary;
-  margin-bottom: 32px;
-  text-decoration: none;
-}
-.backHomeDark{
-  color: $white;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 .emailText {
   border: 1px solid $medium;
   padding: 40px;
@@ -29,11 +11,6 @@
 .emailTextDark{
   border-color: $gray;
   color: $white;
-}
-.title {
-  text-align: start;
-  margin-bottom: 72px;
-  margin-top: 32px;
 }
 .forgotPassword {
   font-size: 16px;
