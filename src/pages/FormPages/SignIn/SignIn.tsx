@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import classNames from "classnames";
 import {NavLink, useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
 import styles from "./SignIn.module.scss";
 import Input from "../../../components/Input";
@@ -9,11 +10,13 @@ import { ButtonType } from "../../../utils/@globalTypes";
 import { Theme, useThemeContext } from "../../../context/Theme/Context";
 import { RoutesList } from "../../Router";
 import FormPages from "../FormPages";
+import {signInUser} from "../../../redux/reducers/authSlice";
 
 const SignIn = () => {
   const { theme } = useThemeContext();
   const isDark = theme === Theme.Dark;
   const navigate=useNavigate()
+  const dispatch = useDispatch()
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,6 +33,16 @@ const SignIn = () => {
   const onResetPasswordPage = () => {
     navigate(RoutesList.ResetPassword);
   };
+
+  const onSignInClick = () => {
+    dispatch(
+        signInUser({
+          data: { email, password },
+          callback: () => navigate(RoutesList.Home),
+        })
+    );
+  };
+
 
   useEffect(() => {
     if (email.length === 0) {
@@ -85,7 +98,7 @@ const SignIn = () => {
           <Button
             title={"Sign In"}
             disabled={!isValid}
-            onClick={() => {}}
+            onClick={onSignInClick}
             type={ButtonType.Primary}
           />
         </div>

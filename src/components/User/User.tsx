@@ -1,6 +1,7 @@
 import React, { FC, ReactNode } from "react";
 import styles from "../User/User.module.scss";
 import MenuBurger from "../MenuBurger";
+import {UserInfoResponse} from "../../redux/sagas/@types";
 
 type UserProps = {
   userName: string;
@@ -16,7 +17,7 @@ const User: FC<UserProps> = ({ userName,className }) => {
             .split(" ")
             .map((word: string) => word[0])
             .join("")}
-        </div>{" "}
+        </div>
         {userName}
       </div>
     </div>

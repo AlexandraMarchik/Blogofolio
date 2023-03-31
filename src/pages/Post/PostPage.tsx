@@ -24,20 +24,16 @@ const PostPage= () => {
   const savedPosts = useSelector(PostSelectors.getSavedPosts)
   const savedPostsIndex = savedPosts.findIndex((post) => post.id === singlePost?.id);
 
-    // не уверена правильно ли кинула action (конкретно эта запись смущает card: singlePost)
     const onStatusClick = (status: LikeStatus) => () => {
     if(singlePost) {
       dispatch(setStatus({status, card: singlePost}));
     }
   };
-
   const onClickBookmark = () => {
     if(singlePost) {
       dispatch(setSavedPosts(singlePost));
     }
   };
-
-
   useEffect(() => {
     if (id) {
       dispatch(getSinglePost(id));
