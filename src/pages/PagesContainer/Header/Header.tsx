@@ -4,11 +4,12 @@ import MenuBurger from "../../../components/MenuBurger";
 import User from "../../../components/User";
 import ThemeSwitcher from "../../../components/ThemeSwitcher";
 import Button from "../../../components/Button";
-import { ButtonType } from "../../../components/Button/Button";
+
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { RoutesList } from "../../Router";
 import classNames from "classnames";
 import {UserIcon} from "../../../assets/icons";
+import {ButtonType} from "../../../utils/@globalTypes";
 
 const Header = () => {
 

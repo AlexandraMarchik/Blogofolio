@@ -1,19 +1,5 @@
-export type CardType = {
-  id: number;
-  image: string;
-  text: string;
-  date: string;
-  lesson_num: number;
-  title: string;
-  description: string;
-  author: number;
-};
+import {CardSize, CardType} from "../../utils/@globalTypes";
 
-export enum CardSize {
-  large,
-  Medium,
-  Small,
-}
 
 export type CardProps = {
   card: CardType;
