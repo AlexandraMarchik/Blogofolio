@@ -93,6 +93,21 @@
 .darkTitle {
   color: $white;
 }
+
+.statusContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.status{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  color: $secondary;
+  padding-left: 8px;
+}
 .darkIconContainer {
   div > svg > path {
     fill: $white;

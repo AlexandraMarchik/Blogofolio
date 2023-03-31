@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import classNames from "classnames";
 import styles from "./Card.module.scss";
 import { CardProps, CardSize } from "./types";
@@ -6,16 +6,44 @@ import {
   BookmarkIcon,
   DislikeIcon,
   LikeIcon,
-  MoreIcon,
+  MoreIcon, SavedBookmarkIcon,
 } from "../../assets/icons";
 import { Theme, useThemeContext } from "../../context/Theme/Context";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  LikeStatus,
+  PostSelectors,
+  setPostVisibility, setSavedPosts,
+  setSelectedPost,
+  setStatus,
+} from "../../redux/reducers/postSlice";
 
 const Card: FC<CardProps> = ({ card, size }) => {
   const { title, text, date, image } = card;
+  const dispatch = useDispatch();
   const { theme } = useThemeContext();
+
+  const isVisible = useSelector(PostSelectors.getVisibleSelectedModal);
   const isMedium = size === CardSize.Medium;
   const isSmall = size === CardSize.Small;
   const isDark = theme === Theme.Dark;
+  const likedPosts = useSelector(PostSelectors.getLikedPosts);
+  const dislikedPosts = useSelector(PostSelectors.getDislikedPosts);
+  const likedIndex = likedPosts.findIndex((post) => post.id === card.id);
+  const dislikedIndex = dislikedPosts.findIndex((post) => post.id === card.id);
+  const savedPosts = useSelector(PostSelectors.getSavedPosts)
+  const savedPostsIndex = savedPosts.findIndex((post) => post.id === card.id);
+
+  const onClickMore = () => {
+    dispatch(setSelectedPost(card));
+    dispatch(setPostVisibility(true));
+  };
+  const onStatusClick = (status: LikeStatus) => () => {
+    dispatch(setStatus({ status, card }));
+  };
+  const onClickBookmark = () => {
+    dispatch(setSavedPosts({card}));
+  };
 
   return (
     <div
@@ -59,11 +87,19 @@ const Card: FC<CardProps> = ({ card, size }) => {
             [styles.darkIconContainer]: isDark,
           })}
         >
-          <div>
+          <div
+            onClick={onStatusClick(LikeStatus.Like)}
+            className={styles.statusContainer}
+          >
             <LikeIcon />
+            <div className={styles.status}>{likedIndex > -1 && 1}</div>
           </div>
-          <div>
+          <div
+            onClick={onStatusClick(LikeStatus.Dislike)}
+            className={styles.statusContainer}
+          >
             <DislikeIcon />
+            <div className={styles.status}>{dislikedIndex > -1 && 1}</div>
           </div>
         </div>
         <div
@@ -71,12 +107,14 @@ const Card: FC<CardProps> = ({ card, size }) => {
             [styles.darkIconContainer]: isDark,
           })}
         >
-          <div>
-            <BookmarkIcon />
+          <div onClick={onClickBookmark} >
+            {savedPostsIndex > -1 ? <SavedBookmarkIcon/>: <BookmarkIcon /> }
           </div>
-          <div>
-            <MoreIcon />
-          </div>
+          {!isVisible && (
+            <div onClick={onClickMore}>
+              <MoreIcon />
+            </div>
+          )}
         </div>
       </div>
     </div>

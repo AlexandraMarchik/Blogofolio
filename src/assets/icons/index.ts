@@ -6,6 +6,8 @@ export {LikeIcon} from './LikeIcon';
 export {MoreIcon} from  './MoreIcon';
 export {MoonIcon} from './MoonIcon';
 export {SunIcon} from "./SunIcon";
-export {UserIcon} from './UserIcon'
+export {UserIcon} from './UserIcon';
+export { CloseIconModal } from "./CloseIconModal";
+export {SavedBookmarkIcon} from './SavedBookmarkIcon'
 
 

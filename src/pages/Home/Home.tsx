@@ -4,12 +4,8 @@ import Tabs from "../../components/Tabs";
 import CardsList from "../../components/CardsList";
 import { CardType } from "../../components/Card";
 import { TabsNames } from "../../components/Tabs/type";
-import PostPage from "../Post";
-import classNames from "classnames";
-import {Theme, useThemeContext} from "../../context/Theme/Context";
-import ThemeSwitcher from "../../components/ThemeSwitcher";
-import SingIn from "../SignIn";
-import Success from "../Success";
+import { useThemeContext } from "../../context/Theme/Context";
+import SelectedPostModal from "./SelectedPostModal";
 
 const TABS_LIST = [
   {
@@ -28,7 +24,7 @@ const TABS_LIST = [
     key: TabsNames.POPULAR,
   },
 ];
-const MOCK_ARRAY = [
+export const MOCK_ARRAY = [
   {
     id: 0,
     image:
@@ -175,29 +171,22 @@ const MOCK_ARRAY = [
   },
 ];
 
-
 const Home = () => {
+  const { theme } = useThemeContext();
   const [activeTab, setActiveTab] = useState(TabsNames.ALL);
-  const onTabClick = (key: TabsNames) => setActiveTab(key);
-
-
-  const {theme} =useThemeContext()
-
-
   const [cardsList, setCardsList] = useState<CardType[]>([]);
+
+  const onTabClick = (key: TabsNames) => setActiveTab(key);
   useEffect(() => {
     setCardsList(MOCK_ARRAY);
   }, [MOCK_ARRAY]);
-
-
 
   return (
     <div>
       <Title title={"Blog"} />
       <Tabs tabsList={TABS_LIST} activeTab={activeTab} onClick={onTabClick} />
       <CardsList cardsList={cardsList} />
-      {/*<Post page={MOCK_PAGE} />*/}
-
+      <SelectedPostModal />
     </div>
   );
 };
