@@ -1,6 +1,5 @@
 @import "src/assets/colors";
 .container{
-margin-bottom: 20px;
 }
 .title {
   font-weight: 600;
@@ -18,7 +17,8 @@ margin-bottom: 20px;
   border: none;
   padding: 18px 20px;
   box-sizing: border-box;
-  &:focus {
+  border: 2px solid transparent;
+  &:focus, &:hover {
     outline: none;
     border: 2px solid $medium;
   }

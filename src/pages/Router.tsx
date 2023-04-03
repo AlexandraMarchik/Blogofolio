@@ -19,6 +19,7 @@ import NewPassword from "./FormPages/NewPassword";
 import {useDispatch, useSelector} from "react-redux";
 import {AuthSelectors, getUserInfo} from "../redux/reducers/authSlice";
 import {getMyPosts} from "src/redux/reducers/postSlice";
+import Search from "src/pages/Search";
 
 
 export enum RoutesList {
@@ -58,6 +59,7 @@ const Router = () => {
           <Route path={RoutesList.Success} element={<Success />} />
           <Route path={RoutesList.SignUp} element={<SignUp />} />
           <Route path={RoutesList.Confirm} element={<Confirm />} />
+          <Route path={RoutesList.Search} element={<Search />} />
           <Route path={RoutesList.ResetPassword} element={<ResetPassword />} />
           <Route path={RoutesList.NewPassword} element={<NewPassword />} />
           <Route

@@ -1,8 +1,5 @@
-export enum TabsNames {
-  ALL,
-  FAVORITES,
-  POPULAR,
-}
+import {TabsNames} from "src/utils/@globalTypes";
+
 
 export type TabsType = {
   title: string;
@@ -11,7 +8,6 @@ export type TabsType = {
 };
 
 export type TabsProps = {
-  tabsList: TabsType[];
   onClick: (key: TabsNames) => void;
-  activeTab: number;
+  activeTab: TabsNames;
 };
