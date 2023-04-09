@@ -6,11 +6,11 @@ import {useDispatch} from "react-redux";
 import styles from "./SignIn.module.scss";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
-import { ButtonType } from "../../../utils/@globalTypes";
-import { Theme, useThemeContext } from "../../../context/Theme/Context";
+import { ButtonType } from "src/utils/@globalTypes";
+import { Theme, useThemeContext } from "src/context/Theme/Context";
 import { RoutesList } from "../../Router";
 import FormPages from "../FormPages";
-import {signInUser} from "../../../redux/reducers/authSlice";
+import {signInUser} from "src/redux/reducers/authSlice";
 
 const SignIn = () => {
   const { theme } = useThemeContext();

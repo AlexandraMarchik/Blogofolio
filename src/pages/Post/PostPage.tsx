@@ -1,12 +1,12 @@
 import React, {useEffect } from "react";
 import {NavLink, useParams} from "react-router-dom";
-import classNames from "classnames";
 import {useDispatch, useSelector} from "react-redux";
+import classNames from "classnames";
 
 import styles from "./PostPage.module.scss";
-import {BookmarkIcon, DislikeIcon, LikeIcon, SavedBookmarkIcon} from "../../assets/icons";
-import { Theme, useThemeContext } from "../../context/Theme/Context";
-import {getSinglePost, LikeStatus, PostSelectors, setSavedPosts, setStatus} from "../../redux/reducers/postSlice";
+import {BookmarkIcon, DislikeIcon, LikeIcon, SavedBookmarkIcon} from "src/assets/icons";
+import { Theme, useThemeContext } from "src/context/Theme/Context";
+import {getSinglePost, LikeStatus, PostSelectors, setSavedPosts, setStatus} from "src/redux/reducers/postSlice";
 import {RoutesList} from "../Router";
 
 
@@ -34,6 +34,7 @@ const PostPage= () => {
       dispatch(setSavedPosts(singlePost));
     }
   };
+
   useEffect(() => {
     if (id) {
       dispatch(getSinglePost(id));

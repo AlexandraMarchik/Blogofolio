@@ -1,4 +1,4 @@
-import React, { useMemo, useState,KeyboardEvent  } from "react";
+import React, { useMemo, useState, KeyboardEvent } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import classNames from "classnames";
 
@@ -13,7 +13,7 @@ import { ButtonType } from "src/utils/@globalTypes";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthSelectors, logoutUser } from "src/redux/reducers/authSlice";
 import Input from "src/components/Input";
-import {getSearchedPosts} from "src/redux/reducers/postSlice";
+import { getSearchedPosts } from "src/redux/reducers/postSlice";
 
 const Header = () => {
   const [isOpened, setOpened] = useState(false);
@@ -55,12 +55,11 @@ const Header = () => {
   };
   const onClickSearchButton = () => {
     setInputOpened(!isInputOpened);
-    if(isInputOpened){
-      dispatch(getSearchedPosts(searchValue))
-      navigate(RoutesList.Search)
+    if (isInputOpened) {
+      dispatch(getSearchedPosts(searchValue));
+      navigate(RoutesList.Search);
     }
   };
-
 
   // поиск из строки search при нажатии на enter
   const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -86,12 +85,12 @@ const Header = () => {
           )}
         </div>
         <div className={styles.infoContainer}>
-            <Button
-              title={<SearchIcon />}
-              onClick={onClickSearchButton}
-              type={ButtonType.Primary}
-              className={styles.button}
-            />
+          <Button
+            title={<SearchIcon />}
+            onClick={onClickSearchButton}
+            type={ButtonType.Primary}
+            className={styles.button}
+          />
           <div className={styles.userName} onClick={onAuthButtonClick}>
             {isLoggedIn && userInfo ? (
               <User userName={userInfo?.username} />
@@ -101,6 +100,7 @@ const Header = () => {
           </div>
         </div>
       </div>
+
       {isOpened && (
         <div className={styles.menuContainer}>
           <div className={styles.actionsContainer}>

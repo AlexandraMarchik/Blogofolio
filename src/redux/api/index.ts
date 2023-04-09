@@ -5,7 +5,7 @@ import {PER_PAGE} from "src/utils/constants";
 const API = create({
     baseURL: "https://studapi.teachmeskills.by",
 })
-const getPosts = (offset:number,search?:string,ordering?: string)=>{
+const getPosts = (offset:number, search?:string, ordering?: string)=>{
     return API.get("/blog/posts/" , {limit:PER_PAGE,offset ,search,ordering})
 }
 const getSinglePost = (id:string)=>{
@@ -53,6 +53,15 @@ const getMyPosts= (token: string) => {
         }
     );
 };
+const addPost = (token: string, data: any) => {
+    return API.post("/blog/posts/", data, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+        },
+    });
+};
+
 
 export default {
     getPosts,
@@ -63,5 +72,6 @@ export default {
     getUserInfo,
     verifyToken,
     refreshToken,
-    getMyPosts
+    getMyPosts,
+    addPost
     };

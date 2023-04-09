@@ -49,6 +49,8 @@
   font-size: 16px;
   line-height: 28px;
   color: $gray;
+  overflow: hidden;
+  max-height: 111px;
 }
 .title {
   font-weight: 700;

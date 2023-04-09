@@ -1,12 +1,13 @@
 @import "src/assets/colors";
-.container{
-}
+@import "src/assets/mixins";
+
 .title {
   font-weight: 600;
   font-size: 16px;
   line-height: 20px;
   color: $secondary;
   margin-bottom: 8px;
+  @include title();
 }
 .darkTitle{
   color:$white;

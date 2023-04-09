@@ -20,6 +20,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AuthSelectors, getUserInfo} from "../redux/reducers/authSlice";
 import {getMyPosts} from "src/redux/reducers/postSlice";
 import Search from "src/pages/Search";
+import AddPost from "src/pages/AddPost";
 
 
 export enum RoutesList {
@@ -65,7 +66,7 @@ const Router = () => {
           <Route
             path={RoutesList.AddPost}
             element={
-              isLoggedIn ? <Home /> : <Navigate to={RoutesList.SignIn} />
+              isLoggedIn ? <AddPost /> : <Navigate to={RoutesList.SignIn} />
             }
           />
           <Route path={RoutesList.Default} element={<div>404 NOT FOUND</div>} />

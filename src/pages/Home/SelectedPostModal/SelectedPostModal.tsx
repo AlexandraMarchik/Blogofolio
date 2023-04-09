@@ -6,9 +6,9 @@ import {
   PostSelectors,
   setPostVisibility,
   setSelectedPost,
-} from "../../../redux/reducers/postSlice";
+} from "src/redux/reducers/postSlice";
 import Card from "../../../components/Card";
-import {CardSize} from "../../../utils/@globalTypes";
+import {CardSize} from "src/utils/@globalTypes";
 
 
 const SelectedPostModal = () => {
