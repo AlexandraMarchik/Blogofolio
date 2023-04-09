@@ -3,15 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
 import classNames from "classnames";
 
+import { PER_PAGE } from "src/utils/constants";
+import { getAllPosts, PostSelectors } from "src/redux/reducers/postSlice";
+import { ButtonType, TabsNames } from "src/utils/@globalTypes";
+import styles from "./Home.module.scss";
 import Title from "../../components/Title";
 import Tabs from "../../components/Tabs";
 import CardsList from "../../components/CardsList";
 import SelectedPostModal from "./SelectedPostModal";
-import { getAllPosts, PostSelectors } from "src/redux/reducers/postSlice";
-import { ButtonType, TabsNames } from "src/utils/@globalTypes";
-import { PER_PAGE } from "src/utils/constants";
-import styles from "./Home.module.scss";
 import Button from "src/components/Button";
+import Loader from "src/components/Loader";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const Home = () => {
   const favouritesList = useSelector(PostSelectors.getSavedPosts);
   const postsCount = useSelector(PostSelectors.getAllPostsCount);
   const pagesCount = Math.ceil(postsCount / PER_PAGE);
+  const isLoading = useSelector(PostSelectors.getAllPostsLoading);
 
   enum Order {
     Date = "date",
@@ -90,31 +92,37 @@ const Home = () => {
           })}
         />
       </div>
-      <CardsList cardsList={getCurrentList()} />
-      <SelectedPostModal />
-      {activeTab !== TabsNames.Popular &&
-        activeTab !== TabsNames.Favourites && (
-          <ReactPaginate
-            pageCount={pagesCount}
-            onPageChange={onPageChange}
-            containerClassName={styles.pagesContainer}
-            pageClassName={styles.pageNumber}
-            breakClassName={styles.pageNumber}
-            breakLinkClassName={styles.linkPage}
-            activeLinkClassName={styles.linkPage}
-            pageLinkClassName={styles.linkPage}
-            activeClassName={styles.activePageNumber}
-            nextClassName={classNames(styles.arrowButton, {
-              [styles.blockedButton]: currentPage === pagesCount,
-            })}
-            previousClassName={classNames(styles.arrowButton, {
-              [styles.blockedButton]: currentPage === 1,
-            })}
-            previousLinkClassName={styles.linkPage}
-            nextLinkClassName={styles.linkPage}
-            forcePage={currentPage - 1}
-          />
-        )}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <CardsList cardsList={getCurrentList()} />
+          <SelectedPostModal />
+          {activeTab !== TabsNames.Popular &&
+            activeTab !== TabsNames.Favourites && (
+              <ReactPaginate
+                pageCount={pagesCount}
+                onPageChange={onPageChange}
+                containerClassName={styles.pagesContainer}
+                pageClassName={styles.pageNumber}
+                breakClassName={styles.pageNumber}
+                breakLinkClassName={styles.linkPage}
+                activeLinkClassName={styles.linkPage}
+                pageLinkClassName={styles.linkPage}
+                activeClassName={styles.activePageNumber}
+                nextClassName={classNames(styles.arrowButton, {
+                  [styles.blockedButton]: currentPage === pagesCount,
+                })}
+                previousClassName={classNames(styles.arrowButton, {
+                  [styles.blockedButton]: currentPage === 1,
+                })}
+                previousLinkClassName={styles.linkPage}
+                nextLinkClassName={styles.linkPage}
+                forcePage={currentPage - 1}
+              />
+            )}
+        </>
+      )}
     </div>
   );
 };

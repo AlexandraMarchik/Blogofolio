@@ -8,7 +8,7 @@ import {
   getMyPosts,
   getSearchedPosts,
   getSinglePost,
-  setAllPosts,
+  setAllPosts, setAllPostsLoading,
   setMyPosts,
   setSearchedPosts,
   setSinglePost,
@@ -47,6 +47,7 @@ function* getSinglePostWorker(action: PayloadAction<string>) {
 }
 
 function* getMyPostsWorker() {
+  yield put(setAllPostsLoading(true));
   const { ok, data, problem }: ApiResponse<AllPostsResponse> =
     yield callCheckingAuth(API.getMyPosts);
   if (ok && data) {
@@ -54,6 +55,7 @@ function* getMyPostsWorker() {
   } else {
     console.warn("Error getting my posts", problem);
   }
+  yield put(setAllPostsLoading(false));
 }
 function* getSearchedPostsWorker(action: PayloadAction<string>) {
   const { ok, data, problem }: ApiResponse<AllPostsResponse> = yield call(
