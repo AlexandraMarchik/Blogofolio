@@ -29,7 +29,7 @@ const authSlice = createSlice({
       state.isLoggedIn = action.payload;
     },
     logoutUser: (_, __: PayloadAction<undefined>) => {},
-    userInfo: (_, __: PayloadAction<undefined>) => {},
+    getUserInfo: (_, __: PayloadAction<undefined>) => {},
     setUserInfo: (state, action: PayloadAction<UserInfoResponse | null>) => {
       state.userInfo = action.payload;
     },
@@ -42,7 +42,7 @@ export const {
   signInUser,
   setLoggedIn,
   logoutUser,
-  userInfo,
+  getUserInfo,
   setUserInfo,
 } = authSlice.actions;
 

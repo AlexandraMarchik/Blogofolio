@@ -23,7 +23,6 @@ const Header = () => {
   const userInfo = useSelector(AuthSelectors.getUserInfo);
 
 
-
   const navButtonsList = useMemo(
     () => [
       {
