@@ -1,11 +1,12 @@
 import {create} from "apisauce";
-import {ActivateUserData, SignInUserData, SignUpUserPayload, UserPayloadData} from "../reducers/@types";
+import {ActivateUserData, SignInUserData,  UserPayloadData} from "../reducers/@types";
+import {PER_PAGE} from "src/utils/constants";
 
 const API = create({
     baseURL: "https://studapi.teachmeskills.by",
 })
-const getPosts = ()=>{
-    return API.get("/blog/posts/?limit=12")
+const getPosts = (offset:number, search?:string, ordering?: string)=>{
+    return API.get("/blog/posts/" , {limit:PER_PAGE,offset ,search,ordering})
 }
 const getSinglePost = (id:string)=>{
     return API.get(`/blog/posts/${id}/`)
@@ -40,6 +41,7 @@ const verifyToken = (token: string) => {
 const refreshToken = (refresh: string) => {
     return API.post("/auth/jwt/refresh/", { refresh });
 };
+
 const getMyPosts= (token: string) => {
     return API.get(
         "/blog/posts/my_posts/",
@@ -51,6 +53,15 @@ const getMyPosts= (token: string) => {
         }
     );
 };
+const addPost = (token: string, data: any) => {
+    return API.post("/blog/posts/", data, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+        },
+    });
+};
+
 
 export default {
     getPosts,
@@ -61,5 +72,6 @@ export default {
     getUserInfo,
     verifyToken,
     refreshToken,
-    getMyPosts
+    getMyPosts,
+    addPost
     };

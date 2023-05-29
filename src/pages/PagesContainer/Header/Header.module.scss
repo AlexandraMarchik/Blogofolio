@@ -1,5 +1,5 @@
-@import 'src/assets/colors';
-.container{
+@import "src/assets/colors";
+.container {
   height: 84px;
   display: flex;
   align-items: center;
@@ -8,12 +8,37 @@
   position: fixed;
   top: 0;
   width: 100%;
-
 }
-.btnBurger{
+.infoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid $primary-secondary;
   border-right: 1px solid $primary-secondary;
+ }
+.input {
+  min-height: 84px;
+  flex: 1;
+  min-width: 1225px;
+  background-color: $primary-secondary;
+  color: $white;
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
 }
-.menuContainer{
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 84px;
+  border-left: 1px solid $primary-secondary;
+}
+.buttonSearch{
+  padding: 27px 32px;
+}
+
+
+.menuContainer {
   position: absolute;
   top: 84px;
   left: 0;
@@ -24,7 +49,7 @@
   flex-direction: column;
   justify-content: space-between;
 }
-.userName{
+.userName {
   margin-right: 32px;
   border-left: 1px solid $primary-secondary;
   height: 84px;
@@ -34,7 +59,7 @@
   padding-left: 30px;
   cursor: pointer;
 }
-.userNameMenu{
+.userNameMenu {
   height: 84px;
   display: flex;
   justify-content: center;
@@ -42,7 +67,7 @@
   background-color: $primary;
   border-top: 2px solid $primary-secondary;
 }
-.authButton{
+.authButton {
   height: 84px;
   display: flex;
   justify-content: center;

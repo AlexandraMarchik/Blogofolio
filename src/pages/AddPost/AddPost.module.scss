@@ -1,0 +1,60 @@
+@import "src/assets/mixins";
+@import "src/assets/colors";
+
+.input {
+  width: 100%;
+}
+.smallInputContainer {
+  display: flex;
+  gap: 33px;
+  div {
+    flex: 1;
+  }
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 10px;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+.actionButtonsContainer {
+  display: flex;
+  gap: 24px;
+}
+.updateButtonsContainer {
+  display: flex;
+  gap: 24px;
+}
+.updateButton {
+  padding: 10px;
+  max-width: 100px;
+}
+.imageItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  @include title();
+}
+
+.dragNDrop {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  height: 56px;
+  border: 2px dashed $secondary;
+  color: $secondary;
+}
+
+.dragNDrop:hover, .draggable {
+  cursor: pointer;
+  border-color: $primary;
+  color: $primary;
+}

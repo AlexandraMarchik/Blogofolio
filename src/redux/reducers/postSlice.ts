@@ -1,8 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "../store";
-import {CardListType, CardType} from "../../utils/@globalTypes";
-
+import { CardListType, CardType } from "src/utils/@globalTypes";
+import {
+  AddPostPayload,
+  GetAllPostsPayload,
+  SetAllPostsPayload,
+} from "src/redux/reducers/@types";
 
 export enum LikeStatus {
   Like = "like",
@@ -11,12 +15,16 @@ export enum LikeStatus {
 type InitialType = {
   selectedPost: CardType | null;
   isVisibleSelectedModal: boolean;
-  likedPosts:CardListType;
+  likedPosts: CardListType;
   dislikedPosts: CardListType;
   savedPosts: CardListType;
   postsList: CardListType;
   singlePost: CardType | null;
-  myPosts: CardListType
+  myPosts: CardListType;
+  searchedPosts: CardListType;
+  searchValue: string;
+  postsCount: number;
+  isAllPostsLoading: boolean;
 };
 
 const initialState: InitialType = {
@@ -26,27 +34,34 @@ const initialState: InitialType = {
   dislikedPosts: [],
   savedPosts: [],
   postsList: [],
-  singlePost:null,
-  myPosts: []
+  singlePost: null,
+  myPosts: [],
+  searchedPosts: [],
+  searchValue: "",
+  postsCount: 0,
+  isAllPostsLoading: false,
 };
 
 const postSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {
-    getAllPosts: (state , action:PayloadAction<undefined>)=>{},
-    setAllPosts: (state, action: PayloadAction<CardListType>) => {
-      state.postsList = action.payload;
+    getAllPosts: (_, __: PayloadAction<GetAllPostsPayload>) => {},
+    setAllPosts: (
+      state,
+      { payload: { postsCount, cardList } }: PayloadAction<SetAllPostsPayload>
+    ) => {
+      state.postsList = cardList;
+      state.postsCount = postsCount;
     },
-    getSinglePost:(state, action:PayloadAction<string>)=>{},
+    getSinglePost: (state, action: PayloadAction<string>) => {},
     setSinglePost: (state, action: PayloadAction<CardType | null>) => {
       state.singlePost = action.payload;
     },
-    getMyPosts: (state , action:PayloadAction<undefined>)=>{},
+    getMyPosts: (state, action: PayloadAction<undefined>) => {},
     setMyPosts: (state, action: PayloadAction<CardListType>) => {
       state.myPosts = action.payload;
     },
-
 
     setSelectedPost: (state, action: PayloadAction<CardType | null>) => {
       state.selectedPost = action.payload;
@@ -82,8 +97,8 @@ const postSlice = createSlice({
         state[secondaryKey].splice(secondaryIndex, 1);
       }
     },
-    setSavedPosts: (state, action: PayloadAction< CardType >) => {
-       const savedPostsIndex = state.savedPosts.findIndex(
+    setSavedPosts: (state, action: PayloadAction<CardType>) => {
+      const savedPostsIndex = state.savedPosts.findIndex(
         (post) => post.id === action.payload.id
       );
       if (savedPostsIndex === -1) {
@@ -92,11 +107,35 @@ const postSlice = createSlice({
         state.savedPosts.splice(savedPostsIndex, 1);
       }
     },
+    getSearchedPosts: (state, action: PayloadAction<string>) => {
+      state.searchValue = action.payload;
+    },
+    setSearchedPosts: (state, action: PayloadAction<CardListType>) => {
+      state.searchedPosts = action.payload;
+    },
+    addNewPost: (_, __: PayloadAction<AddPostPayload>) => {},
+    setAllPostsLoading: (state, action: PayloadAction<boolean>) => {
+      state.isAllPostsLoading = action.payload;
+    },
   },
 });
 
-export const { setSelectedPost, setPostVisibility, setStatus, setSavedPosts, getAllPosts, setAllPosts,getSinglePost,setSinglePost ,setMyPosts,getMyPosts} =
-  postSlice.actions;
+export const {
+  setSelectedPost,
+  setPostVisibility,
+  setStatus,
+  setSavedPosts,
+  getAllPosts,
+  setAllPosts,
+  getSinglePost,
+  setSinglePost,
+  setMyPosts,
+  getMyPosts,
+  getSearchedPosts,
+  setSearchedPosts,
+  addNewPost,
+    setAllPostsLoading
+} = postSlice.actions;
 
 export default postSlice.reducer;
 
@@ -107,7 +146,12 @@ export const PostSelectors = {
   getLikedPosts: (state: RootState) => state.posts.likedPosts,
   getDislikedPosts: (state: RootState) => state.posts.dislikedPosts,
   getSavedPosts: (state: RootState) => state.posts.savedPosts,
-  getAllPosts:(state:RootState)=>state.posts.postsList,
-  getSinglePost:(state:RootState)=>state.posts.singlePost,
-  getMyPosts: (state:RootState)=>state.posts.myPosts,
+  getAllPosts: (state: RootState) => state.posts.postsList,
+  getSinglePost: (state: RootState) => state.posts.singlePost,
+  getMyPosts: (state: RootState) => state.posts.myPosts,
+  getSearchedPosts: (state: RootState) => state.posts.searchedPosts,
+  getSearchValue: (state: RootState) => state.posts.searchValue,
+  getAllPostsCount: (state: RootState) => state.posts.postsCount,
+  getAllPostsLoading: (state: RootState) => state.posts.isAllPostsLoading,
+
 };

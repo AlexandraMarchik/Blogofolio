@@ -17,7 +17,13 @@
   font-size: 16px;
   color: $white;
 }
-
+@mixin title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: $secondary;
+  margin-bottom: 8px;
+}
 
 
 

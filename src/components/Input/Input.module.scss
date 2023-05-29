@@ -1,13 +1,13 @@
 @import "src/assets/colors";
-.container{
-margin-bottom: 20px;
-}
+@import "src/assets/mixins";
+
 .title {
   font-weight: 600;
   font-size: 16px;
   line-height: 20px;
   color: $secondary;
   margin-bottom: 8px;
+  @include title();
 }
 .darkTitle{
   color:$white;
@@ -18,7 +18,8 @@ margin-bottom: 20px;
   border: none;
   padding: 18px 20px;
   box-sizing: border-box;
-  &:focus {
+  border: 2px solid transparent;
+  &:focus, &:hover {
     outline: none;
     border: 2px solid $medium;
   }

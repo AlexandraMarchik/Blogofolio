@@ -1,16 +1,51 @@
-import React, { FC, MouseEventHandler, useState } from "react";
+import React, { FC, useMemo } from "react";
 import styles from "./Tabs.module.scss";
 import classNames from "classnames";
-import {TabsNames, TabsProps} from "./type";
-import {Theme, useThemeContext} from "../../context/Theme/Context";
+import {  TabsProps } from "./type";
+import { Theme, useThemeContext } from "src/context/Theme/Context";
+import { AuthSelectors } from "src/redux/reducers/authSlice";
+import { useSelector } from "react-redux";
+import {TabsNames} from "src/utils/@globalTypes";
 
-const Tabs: FC<TabsProps> = ({ tabsList, activeTab, onClick }) => {
+const Tabs: FC<TabsProps> = ({ activeTab, onClick }) => {
+  const { theme } = useThemeContext();
+  const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
+
+  const TABS_LIST = useMemo(
+    () => [
+      {
+        title: "All",
+        disabled: false,
+        key: TabsNames.All,
+      },
+      {
+        title: "My Posts",
+        disabled: !isLoggedIn,
+        key: TabsNames.MyPosts,
+      },
+      {
+        title: "Popular",
+        disabled: false,
+        key: TabsNames.Popular,
+      },
+        {
+            title: "Favourites",
+            disabled: !isLoggedIn,
+            key: TabsNames.Favourites,
+        },
+    ],
+    [isLoggedIn]
+  );
+
   const onTabClick = (key: TabsNames) => () => onClick(key);
-const {theme} =useThemeContext()
+
   return (
-    <div className={classNames(styles.container, {
-      [styles.darkContainer]: theme === Theme.Dark })}>
-      {tabsList.map((tab) => {
+    <div
+      className={classNames(styles.container, {
+        [styles.darkContainer]: theme === Theme.Dark,
+      })}
+    >
+      {TABS_LIST.map((tab) => {
         return (
           <div
             key={tab.key}

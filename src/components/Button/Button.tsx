@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from "react";
 import classNames from "classnames";
 
 import styles from "./Button.module.scss";
-import {ButtonType} from "../../utils/@globalTypes";
+import {ButtonType} from "src/utils/@globalTypes";
 
 
 type ButtonProps = {
@@ -25,7 +25,7 @@ const Button: FC<ButtonProps> = ({ title, onClick, type, disabled,className }) =
   return (
     <div
       onClick={disabled ? undefined : onClick}
-      className={classNames(buttonClassName,className, {
+      className={classNames(className, buttonClassName,{
         [styles.disabledButton]: disabled,
       })}
     >

@@ -2,8 +2,8 @@ import React, {FC } from "react";
 
 import styles from "./BurgerButton.module.scss";
 import Button from "../Button";
-import { CloseIcon, OpenedMenu } from "../../assets/icons";
-import {ButtonType} from "../../utils/@globalTypes";
+import { CloseIcon, OpenedMenu } from "src/assets/icons";
+import {ButtonType} from "src/utils/@globalTypes";
 
 
 type MenuButtonProps = {

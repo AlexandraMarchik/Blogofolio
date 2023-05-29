@@ -1,4 +1,4 @@
-import {CardSize, CardType} from "../../utils/@globalTypes";
+import {CardSize, CardType} from "src/utils/@globalTypes";
 
 
 export type CardProps = {
